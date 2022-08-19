@@ -113,7 +113,7 @@ root.title(tk_title)
 
 # Width & Height
 rootWidth = 450
-rootHeight = 500
+rootHeight = 600
 
 
 # X Position
