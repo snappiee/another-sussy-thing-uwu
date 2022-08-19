@@ -3,3 +3,4 @@ This is a Python program that will automate Dank Memer commands for you. You can
 Note: To run it you must have Python installed with Python path variables enabled.
 Advice for click mode: you should choose the first option (as they're actually aligned so clicks on it won't be missed)
 The main version belongs to EvanDev, I just add the click mode only :D
+requirements: python pip -m install requirements.txt ur done
