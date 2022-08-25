@@ -24,7 +24,7 @@ CommandsChosen = [ # Default values for the commands
     True, # Hunt
     True, # Dig
     True, # Post Meme
-    True, #Scout
+    True, #Search
     True, #Crime
     True, #Highlow
     True, #Trivia
@@ -425,7 +425,7 @@ CommandButtonLabelText = [
     "hunt",
     "dig",
     "postmeme",
-    "scout",
+    "Search",
     "crime",
     "highlow",
     "trivia",
@@ -461,7 +461,7 @@ for x in range(11): # Creates all the command buttons, text labels, and requirem
     CommandButtons.append(CommandButton) # Storing the button in a list
 
     # Text label for the button
-    CommandLabel = Label(buttonsFrame, bg=gray25, text="- pls " + CommandButtonLabelText[x], font=("Arial", 18), fg="white")
+    CommandLabel = Label(buttonsFrame, bg=gray25, text="- /" + CommandButtonLabelText[x], font=("Arial", 18), fg="white")
     CommandLabel.grid(row=x, column=1, sticky="NW")
     # Requirement text label
     RequirementLabel = Label(buttonsFrame, bg=gray25, text=CommandRequirementText[x], font=("Arial", 12), fg="white")
@@ -704,7 +704,7 @@ def positionsButtonClicked(buttonId):
         if (buttonId == 0):
             instructionsText.set("Now click on the Discord chat bar")
         elif (buttonId == 1):
-            instructionsText.set("Now click on one of the Clickoptions")
+            instructionsText.set("Now click on one of the Click options")
 
 
 
@@ -822,13 +822,13 @@ RunPowerupCommandsLabel = Label(RunPageFrame, textvariable=RunPowerupCommandsTex
 RunPowerupCommandsLabel.pack(anchor="nw", padx=20)
 
 # Command cooldowns
-begCooldown = random.randint(33, 37)
-fishCooldown = random.randint(33, 37)
-huntCooldown = random.randint(33, 37)
-digCooldown = random.randint(33, 37)
-postMemeCooldown = random.randint(38, 45)
-ScoutCooldown = random.randint(23, 27)
-CrimeCooldown = random.randint(33, 37)
+begCooldown = random.randint(43, 47)
+fishCooldown = random.randint(39, 43)
+huntCooldown = random.randint(39, 43)
+digCooldown = random.randint(39, 43)
+postMemeCooldown = random.randint(48, 51)
+SearchCooldown = random.randint(29, 32)
+CrimeCooldown = random.randint(43, 47)
 HighlowCooldown = random.randint(28, 32)
 TriviaCooldown = random.randint(3,7)
 landmineCooldown = 30
@@ -840,7 +840,7 @@ runFish = True
 runHunt = True
 runDig = True
 runPostMeme = True
-runScout = True
+runSearch = True
 runCrime = True
 runHighlow = True
 runTrivia = True
@@ -857,7 +857,7 @@ lastFish = None
 lastHunt = None
 lastDig = None
 lastPostMeme = None
-lastScout = None
+lastSearch = None
 lastCrime = None
 lastHighlow = None
 lastTrivia = None
@@ -939,31 +939,40 @@ def enterCommand(command):
     for character in command:
             keyboard.press(character)
             keyboard.release(character)
-            sleep(0.02)
+            sleep(0.05)
     keyboard.press(Key.enter)
     keyboard.release(Key.enter)
 
 def postMemeCommand():
-    enterCommand("pls pm")
-    sleep(3)
+    enterCommand("/postmeme")
+    sleep(1)
+    keyboard.press(Key.enter)
+    keyboard.press(Key.enter)
+    sleep(1.8)
     postMemeOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = postMemeOptionPos
     sleep(0.1)
     mouse.press(MouseButton.left)
     mouse.release(MouseButton.left)
 
-def ScoutCommand():
-    enterCommand("pls scout")
-    sleep(3)
-    ScoutOptionPos = (PositionValues[1][0], PositionValues[1][1])
-    mouse.position = ScoutOptionPos
+def SearchCommand():
+    enterCommand("/search")
+    sleep(1)
+    keyboard.press(Key.enter)
+    keyboard.press(Key.enter)
+    sleep(1.8)
+    SearchOptionPos = (PositionValues[1][0], PositionValues[1][1])
+    mouse.position = SearchOptionPos
     sleep(0.1)
     mouse.press(MouseButton.left)
     mouse.release(MouseButton.left)
 
 def CrimeCommand():
-    enterCommand("pls crime")
-    sleep(3)
+    enterCommand("/crime")
+    sleep(1)
+    keyboard.press(Key.enter)
+    keyboard.press(Key.enter)
+    sleep(1.8)
     CrimeOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = CrimeOptionPos
     sleep(0.1)
@@ -971,8 +980,11 @@ def CrimeCommand():
     mouse.release(MouseButton.left)
 
 def HighlowCommand():
-    enterCommand("pls hl")
-    sleep(3)
+    enterCommand("/highlow")
+    sleep(1)
+    keyboard.press(Key.enter)
+    keyboard.press(Key.enter)
+    sleep(1.8)
     HighlowOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = HighlowOptionPos
     sleep(0.1)
@@ -980,8 +992,11 @@ def HighlowCommand():
     mouse.release(MouseButton.left)
 
 def TriviaCommand():
-    enterCommand("pls triv")
-    sleep(3)
+    enterCommand("/triv")
+    sleep(1)
+    keyboard.press(Key.enter)
+    keyboard.press(Key.enter)
+    sleep(1.8)
     TriviaOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = TriviaOptionPos
     sleep(0.1)
@@ -1033,15 +1048,15 @@ def runPostMemeCommand():
             if (timePassed > postMemeCooldown):
                 runPostMeme = False
                 commandWaitList.append("postMeme")
-def runScoutCommand():
+def runSearchCommand():
     while True:
         sleep(1)
-        global runScout
-        if (runScout == True):
-            timePassed = round(time.time()) - round(lastScout)
-            if (timePassed > ScoutCooldown):
-                runScout = False
-                commandWaitList.append("Scout")
+        global runSearch
+        if (runSearch == True):
+            timePassed = round(time.time()) - round(lastSearch)
+            if (timePassed > SearchCooldown):
+                runSearch = False
+                commandWaitList.append("Search")
 def runCrimeCommand():
     while True:
         sleep(1)
@@ -1133,7 +1148,10 @@ def runWaitList():
             commandRunning = True
             if (command == "beg"):
                 commandWaitList.remove("beg")
-                enterCommand("pls beg")
+                enterCommand("/beg")
+                sleep(1)
+                keyboard.press(Key.enter)
+                keyboard.press(Key.enter)
                 global lastBeg
                 lastBeg = time.time()
                 global runBeg
@@ -1142,7 +1160,10 @@ def runWaitList():
                 increaseCurrencyCommandCount()
             elif (command == "fish"):
                 commandWaitList.remove("fish")
-                enterCommand("pls fish")
+                enterCommand("/fish")
+                sleep(1)
+                keyboard.press(Key.enter)
+                keyboard.press(Key.enter)
                 global lastFish
                 lastFish = time.time()
                 global runFish
@@ -1151,7 +1172,10 @@ def runWaitList():
                 increaseCurrencyCommandCount()
             elif (command == "hunt"):
                 commandWaitList.remove("hunt")
-                enterCommand("pls hunt")
+                enterCommand("/hunt")
+                sleep(1)
+                keyboard.press(Key.enter)
+                keyboard.press(Key.enter)
                 global lastHunt
                 lastHunt = time.time()
                 global runHunt
@@ -1160,7 +1184,10 @@ def runWaitList():
                 increaseCurrencyCommandCount()
             elif (command == "dig"):
                 commandWaitList.remove("dig")
-                enterCommand("pls dig")
+                enterCommand("/dig")
+                sleep(1)
+                keyboard.press(Key.enter)
+                keyboard.press(Key.enter)
                 global lastDig
                 lastDig = time.time()
                 global runDig
@@ -1176,13 +1203,13 @@ def runWaitList():
                 runPostMeme = True
                 increaseCommandCount()
                 increaseCurrencyCommandCount()
-            elif (command == "Scout"):
-                commandWaitList.remove("Scout")
-                ScoutCommand()
-                global lastScout
-                lastScout = time.time()
-                global runScout
-                runScout = True
+            elif (command == "Search"):
+                commandWaitList.remove("Search")
+                SearchCommand()
+                global lastSearch
+                lastSearch = time.time()
+                global runSearch
+                runSearch = True
                 increaseCommandCount()
                 increaseCurrencyCommandCount()
             elif (command == "Crime"):
@@ -1214,7 +1241,10 @@ def runWaitList():
                 increaseCurrencyCommandCount()
             elif (command == "landmine"):
                 commandWaitList.remove("landmine")
-                enterCommand("pls use landmine")
+                enterCommand("/use")
+                sleep(1)
+                keyboard.press(Key.enter)
+                keyboard.press(Key.enter)
                 global lastLandmine
                 lastLandmine = time.time()
                 global runLandmine
@@ -1223,7 +1253,10 @@ def runWaitList():
                 increaseSafetyCommandCount()
             elif (command == "padlock"):
                 commandWaitList.remove("padlock")
-                enterCommand("pls use padlock")
+                enterCommand("/use padlock")
+                sleep(1)
+                keyboard.press(Key.enter)
+                keyboard.press(Key.enter)
                 global lastPadlock
                 lastPadlock = time.time()
                 global runPadlock
@@ -1237,7 +1270,12 @@ def runWaitList():
                 global luckyAmount
                 if (luckyAmount > 0):
                     luckyAmount = luckyAmount - 1
-                    enterCommand("pls use lucky")
+                    enterCommand("/use")
+                    sleep(1)
+                    keyboard.press(Key.enter)
+                    enterCommand("lucky")
+                    keyboard.press(Key.enter)
+                    keyboard.press(Key.enter)
                     global lastLucky
                     lastLucky = time.time()
                     global runLucky
@@ -1250,7 +1288,12 @@ def runWaitList():
                 global pizzaAmount
                 if (pizzaAmount > 0):
                     pizzaAmount = pizzaAmount - 1
-                    enterCommand("pls use pizza")
+                    enterCommand("/use")
+                    sleep(1)
+                    keyboard.press(Key.enter)
+                    enterCommand("pizza")
+                    keyboard.press(Key.enter)
+                    keyboard.press(Key.enter)
                     global lastPizza
                     lastPizza = time.time()
                     global runPizza
@@ -1263,7 +1306,12 @@ def runWaitList():
                 global coinAmount
                 if (coinAmount > 0):
                     coinAmount = coinAmount - 1
-                    enterCommand("pls use prestigecoin")
+                    enterCommand("/use")
+                    sleep(1)
+                    keyboard.press(Key.enter)
+                    enterCommand("Prestige")
+                    keyboard.press(Key.enter)
+                    keyboard.press(Key.enter)
                     global lastCoin
                     lastCoin = time.time()
                     global runCoin
@@ -1276,7 +1324,12 @@ def runWaitList():
                 global ammoAmount
                 if (coinAmount > 0):
                     ammoAmount = ammoAmount - 1
-                    enterCommand("pls use ammo")
+                    enterCommand("/use")
+                    sleep(1)
+                    keyboard.press(Key.enter)
+                    enterCommand("ammo")
+                    keyboard.press(Key.enter)
+                    keyboard.press(Key.enter)
                     global lastAmmo
                     lastAmmo = time.time()
                     global runAmmo
@@ -1294,7 +1347,7 @@ def RunBot():
         global huntCooldown
         global digCooldown
         global postMemeCooldown
-        global ScoutCooldown
+        global SearchCooldown
         global CrimeCooldown
         global HighlowCooldown
         global TriviaCooldown
@@ -1304,7 +1357,7 @@ def RunBot():
         huntCooldown = 30
         digCooldown = 30
         postMemeCooldown = 45
-        ScoutCooldown = 20
+        SearchCooldown = 20
         CrimeCooldown = 15
         HighlowCooldown = 15
         TriviaCooldown = 3
@@ -1335,10 +1388,10 @@ def RunBot():
         commandWaitList.append("postMeme")
         Timer(2, runPostMemeCommand).start()
     if (CommandsChosen[5] == True):
-        global lastScout
-        lastScout = time.time() + 1000
-        commandWaitList.append("Scout")
-        Timer(2, runScoutCommand).start()
+        global lastSearch
+        lastSearch = time.time() + 1000
+        commandWaitList.append("Search")
+        Timer(2, runSearchCommand).start()
     if (CommandsChosen[6] == True):
         global lastCrime
         lastCrime = time.time() + 1000
@@ -1415,8 +1468,7 @@ def key_release(key):
     if (key == Key.shift or key == Key.shift_r):
         keyDetectionListener.stop()
         root.destroy()
-        client.stopped = True
-        
+
 def addKeyboardListener():
     with listenerKeyboard.Listener(on_release=key_release) as listener:
         global keyDetectionListener
