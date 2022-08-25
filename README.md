@@ -1,7 +1,6 @@
-# Dank-Memer-Auto-Farm-Software
-This is a Python program that will automate Dank Memer commands for you. You can leave it on while you're afk and it will automatically earn you a ton of coins.
-Note: To run it you must have Python installed with Python path variables enabled.
-Advice for click mode: you should choose the first option (as they're actually aligned so clicks on it won't be missed)
-The main version belongs to EvanDev, I just add the click mode only :D
-requirements: requirements.txt
-install python with path enabled 🙏
+Auto Dank Memer Farm.
+Install the modules in requirements.txt.
+Install python with PATH variables enabled
+set the click option: click on one of the options in cmds like postmeme, highlow, ... (first option recommended)
+set the chat bar click option: click on the argument of slash command, for example: type "/use" and click on the remaining argument of the slash
+enjoy the bot, this belongs to EvanDev, I just create and fix the code too.
