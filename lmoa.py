@@ -38,9 +38,11 @@ PowerupsChosen = [ # Default values for powerups
     False,
     False,
     False,
+    False,
 ]
 
 powerupAmounts = [ # Default powerup amounts
+    1,
     1,
     1,
     1,
@@ -293,14 +295,14 @@ MainPageFrame.pack(expand=1, fill=BOTH)
 MainPageTitleText = "Dank Memer Auto Farm" # Page title text
 MainPageSubTitleText = "Customize your settings then click run to begin the automation" # Page sub title text
 
-MainPageTitleLabel = Label(MainPageFrame, text=MainPageTitleText, font=("Arial", 18), bg=gray25, fg="white", wraplength=rootWidth - 25, justify="center") # Page title
+MainPageTitleLabel = Label(MainPageFrame, text=MainPageTitleText, font=("Consolas", 18), bg=gray25, fg="white", wraplength=rootWidth - 25, justify="center") # Page title
 MainPageTitleLabel.pack()
 
-MainPageSubTitleLabel = Label(MainPageFrame, text=MainPageSubTitleText, font=("Arial", 12),bg=gray25, fg="white", wraplength=rootWidth - 25, justify = "center") # Page sub title
+MainPageSubTitleLabel = Label(MainPageFrame, text=MainPageSubTitleText, font=("Consolas", 12),bg=gray25, fg="white", wraplength=rootWidth - 25, justify = "center") # Page sub title
 MainPageSubTitleLabel.pack()
 
 
-MainSettingsLabel = Label(MainPageFrame, text="Settings", font=("Arial", 13), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
+MainSettingsLabel = Label(MainPageFrame, text="Settings", font=("Consolas", 13), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
 MainSettingsLabel.pack(anchor="nw", padx=20, pady=5)
 
 
@@ -335,10 +337,10 @@ patreonButton.bind("<Enter>", tkinterOptionButton_enter)
 patreonButton.bind("<Leave>", tkinterOptionButton_leave)
 
 # Text label for the button
-CommandLabel = Label(patreonFrame, bg=gray25, text="Dank Memer Patreon", font=("Arial", 15), fg="white")
+CommandLabel = Label(patreonFrame, bg=gray25, text="Dank Memer Patreon", font=("Consolas", 15), fg="white")
 CommandLabel.grid(row=0, column=1, sticky="NW")
 
-CommandSubLabel = Label(patreonFrame, bg=gray25, text="(Shortens Cooldowns)", font=("Arial", 12), fg="white")
+CommandSubLabel = Label(patreonFrame, bg=gray25, text="(Shortens Cooldowns)", font=("Consolas", 12), fg="white")
 CommandSubLabel.grid(row=0, column=2, sticky="W")
 
 def settingsButtonClicked(buttonClicked):
@@ -370,14 +372,14 @@ settingsLabelsText = [ # Text for the settings labels
 
 for x in range(0, 3): # Creates 3 settings buttons
     # Button
-    settingsButton = Button(MainSettingsFrame, width=10, text=settingsButtonsText[x], font=("Arial", 14, "bold"), bg=gray20, activebackground=gray10, fg="white", activeforeground="white", borderwidth=1)
+    settingsButton = Button(MainSettingsFrame, width=10, text=settingsButtonsText[x], font=("Consolas", 14, "bold"), bg=gray20, activebackground=gray10, fg="white", activeforeground="white", borderwidth=1)
     settingsButton.config(command=partial(settingsButtonClicked, settingsButton))
     settingsButton.grid(row=x+2, column=0, sticky="NW", padx=(20, 10), pady=7)
     settingsButton.bind("<Enter>", lambda event:tkinterButton_enter(event, gray15))
     settingsButton.bind("<Leave>", lambda event:tkinterButton_enter(event, gray20))
 
     # Label
-    settingsLabel = Label(MainSettingsFrame, bg=gray25, text=settingsLabelsText[x], font=("Arial", 12), fg="white", wraplength=280, justify=LEFT)
+    settingsLabel = Label(MainSettingsFrame, bg=gray25, text=settingsLabelsText[x], font=("Consolas", 12), fg="white", wraplength=280, justify=LEFT)
     settingsLabel.grid(row=x+2, column=1, sticky="w", padx = 10)
 
     # Storing the button and label
@@ -392,10 +394,10 @@ CommandSettingsFrame = Frame(window, bg=gray25,highlightthickness=0) # Frame for
 commandsTitleText = "Commands" # Title text
 commandsTitleSubText = "Select which commands to run" # Title sub text
 
-commandsLabel = Label(CommandSettingsFrame, text=commandsTitleText, font=("Arial", 15), bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify="center") # Title Label
+commandsLabel = Label(CommandSettingsFrame, text=commandsTitleText, font=("Consolas", 15), bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify="center") # Title Label
 commandsLabel.pack()
 
-commandsSubLabel = Label(CommandSettingsFrame, text=commandsTitleSubText, font=("Arial", 12),bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify = "center") # Sub Title Label
+commandsSubLabel = Label(CommandSettingsFrame, text=commandsTitleSubText, font=("Consolas", 12),bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify = "center") # Sub Title Label
 commandsSubLabel.pack()
 ##### Buttons #####
 
@@ -461,10 +463,10 @@ for x in range(10): # Creates all the command buttons, text labels, and requirem
     CommandButtons.append(CommandButton) # Storing the button in a list
 
     # Text label for the button
-    CommandLabel = Label(buttonsFrame, bg=gray25, text="- /" + CommandButtonLabelText[x], font=("Arial", 14), fg="white")
+    CommandLabel = Label(buttonsFrame, bg=gray25, text="- /" + CommandButtonLabelText[x], font=("Consolas", 14), fg="white")
     CommandLabel.grid(row=x, column=1, sticky="NW")
     # Requirement text label
-    RequirementLabel = Label(buttonsFrame, bg=gray25, text=CommandRequirementText[x], font=("Arial", 12), fg="white")
+    RequirementLabel = Label(buttonsFrame, bg=gray25, text=CommandRequirementText[x], font=("Consolas", 12), fg="white")
     RequirementLabel.grid(row=x, column=2, sticky="W")
 
 buttonsFrame.grid_rowconfigure(100, weight=1)
@@ -488,14 +490,14 @@ def SaveCommands(): # Saves commands
     ExitCommandSettings()
 
 saveButtonText = StringVar()
-saveButton = Button(CommandSaveExitFrame, width=7, textvariable=saveButtonText, font=("Arial", 13, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SaveCommands)
+saveButton = Button(CommandSaveExitFrame, width=7, textvariable=saveButtonText, font=("Consolas", 13, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SaveCommands)
 saveButtonText.set("Save")
 saveButton.grid(row=0, column=0, padx = 10)
 saveButton.bind("<Enter>", lambda event:tkinterButton_enter(event, greenHoverColor))
 saveButton.bind("<Leave>", lambda event:tkinterButton_enter(event, saveButtonColor))
 
 ## Exit Button ##
-exitButton = Button(CommandSaveExitFrame, width=7, text="Cancel", font=("Arial", 13, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitCommandSettings)
+exitButton = Button(CommandSaveExitFrame, width=7, text="Cancel", font=("Consolas", 13, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitCommandSettings)
 exitButton.grid(row=0, column=1, padx = 10)
 exitButton.bind("<Enter>", lambda event:tkinterButton_enter(event, redHoverColor))
 exitButton.bind("<Leave>", lambda event:tkinterButton_leave(event, exitButtonColor))
@@ -510,10 +512,10 @@ PowerupSettingsFrame = Frame(window, bg=gray25,highlightthickness=0) # Frame for
 powerupTitleText = "Powerups" # Title text
 powerupSubTitleText = "Select which items/powerups to use and how many" # Sub title text
 
-powerupTitleLabel = Label(PowerupSettingsFrame, text=powerupTitleText, font=("Arial", 25), bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify="center") # Title Label
+powerupTitleLabel = Label(PowerupSettingsFrame, text=powerupTitleText, font=("Consolas", 25), bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify="center") # Title Label
 powerupTitleLabel.pack()
 
-powerupSubTitleLabel = Label(PowerupSettingsFrame, text=powerupSubTitleText, font=("Arial", 14),bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify = "center") # Sub Title Label
+powerupSubTitleLabel = Label(PowerupSettingsFrame, text=powerupSubTitleText, font=("Consolas", 14),bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify = "center") # Sub Title Label
 powerupSubTitleLabel.pack()
 
 # Button click functions
@@ -553,7 +555,8 @@ powerupButtonLabelText = [
     "Pizza",
     "Prestige Coin",
     "Ammo",
-    "Apple"
+    "Apple",
+    "Autobuy Lifesaver"
     
 ]
 powerupTimeText = [
@@ -561,13 +564,14 @@ powerupTimeText = [
     "(2h)",
     "(6h)",
     "(20m)",
-    "(1d)"
+    "(1d)",
+    "(every 15m)"
     
 ]
 
 powerupAmountText = []
 
-for x in range(5): # Creates all the command buttons, text labels, and amount buttons.
+for x in range(6): # Creates all the command buttons, text labels, and amount buttons.
     # Button
     powerupButton = Button(powerupButtonsFrame, width = 3, height = 1)
     powerupButton.config(command=partial(powerupButtonClicked, powerupButton, x))
@@ -582,23 +586,23 @@ for x in range(5): # Creates all the command buttons, text labels, and amount bu
     powerupButtons.append(powerupButton)
 
     # Text label for the button
-    powerupLabel = Label(powerupButtonsFrame, bg=gray25, text=powerupButtonLabelText[x], font=("Arial", 15), fg="white")
+    powerupLabel = Label(powerupButtonsFrame, bg=gray25, text=powerupButtonLabelText[x], font=("Consolas", 13), fg="white")
     powerupLabel.grid(row=x, column=1, sticky="NW", padx=(0, 10))
-    powerupTimeLabel = Label(powerupButtonsFrame, bg=gray25, text=powerupTimeText[x], font=("Arial", 15), fg="white")
+    powerupTimeLabel = Label(powerupButtonsFrame, bg=gray25, text=powerupTimeText[x], font=("Consolas", 12), fg="white")
     powerupTimeLabel.grid(row=x, column=2, padx=(0, 10))
 
     ## Amount button and text
-    lowerAmountButton = Button(powerupButtonsFrame, width = 2, height = 1, text="-", font=("Arial", 12, "bold"), bg=gray20, activebackground=gray10, fg="white", activeforeground="white")
+    lowerAmountButton = Button(powerupButtonsFrame, width = 2, height = 1, text="-", font=("Consolas", 12, "bold"), bg=gray20, activebackground=gray10, fg="white", activeforeground="white")
     lowerAmountButton.config(command=partial(lowerAmountButtonClicked, x))
     lowerAmountButton.grid(row=x, column = 3, sticky="W", padx=10)
     lowerAmountButton.bind("<Enter>", lambda event: tkinterButton_enter(event, gray15))
     lowerAmountButton.bind("<Leave>", lambda event: tkinterButton_leave(event, gray20))
 
     amountText = StringVar()
-    amountLabel = Label(powerupButtonsFrame, bg=gray25, textvariable=amountText, font=("Arial", 15, "bold"), fg="white", width=2, height=1)
+    amountLabel = Label(powerupButtonsFrame, bg=gray25, textvariable=amountText, font=("Consolas", 15, "bold"), fg="white", width=2, height=1)
     amountLabel.grid(row=x, column=4, sticky="NW")
 
-    upAmountButton = Button(powerupButtonsFrame, width = 2, height = 1, text="+", font=("Arial", 12, "bold"), bg=gray20, activebackground=gray10, fg="white", activeforeground="white")
+    upAmountButton = Button(powerupButtonsFrame, width = 2, height = 1, text="+", font=("Consolas", 12, "bold"), bg=gray20, activebackground=gray10, fg="white", activeforeground="white")
     upAmountButton.config(command=partial(upAmountButtonClicked, x))
     upAmountButton.grid(row=x, column = 5, sticky="W", padx=10)
     upAmountButton.bind("<Enter>", lambda event: tkinterButton_enter(event, gray15))
@@ -646,7 +650,7 @@ def SavePowerups():
         ExitPowerupSettings()
 
 powerupsSaveButtonText = StringVar()
-powerupsSaveButton = Button(powerupSaveExitFrame, width=10, textvariable=powerupsSaveButtonText, font=("Arial", 18, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SavePowerups)
+powerupsSaveButton = Button(powerupSaveExitFrame, width=10, textvariable=powerupsSaveButtonText, font=("Consolas", 18, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SavePowerups)
 powerupsSaveButtonText.set("Save")
 powerupsSaveButton.grid(row=0, column=0, padx = 10)
 powerupsSaveButton.bind("<Enter>", lambda event: tkinterButton_enter(event, greenHoverColor))
@@ -654,7 +658,7 @@ powerupsSaveButton.bind("<Leave>", lambda event: tkinterButton_leave(event, save
 
 ## Exit Button ##
 
-powerupsExitButton = Button(powerupSaveExitFrame, width=10, text="Cancel", font=("Arial", 18, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitPowerupSettings)
+powerupsExitButton = Button(powerupSaveExitFrame, width=10, text="Cancel", font=("Consolas", 18, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitPowerupSettings)
 powerupsExitButton.grid(row=0, column=1, padx = 10)
 powerupsExitButton.bind("<Enter>", lambda event: tkinterButton_enter(event, redHoverColor))
 powerupsExitButton.bind("<Leave>", lambda event: tkinterButton_leave(event, redColor))
@@ -670,14 +674,14 @@ PositionsFrame = Frame(window, bg=gray25,highlightthickness=0)
 PositionsTitleText = "Mouse Positions"
 PositionsSubTitleText = "Set the mouse positions so that the automation works correctly"
 
-PositionsTitleLabel = Label(PositionsFrame, text=PositionsTitleText, font=("Arial", 25), bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify="center")
+PositionsTitleLabel = Label(PositionsFrame, text=PositionsTitleText, font=("Consolas", 25), bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify="center")
 PositionsTitleLabel.pack()
 
-PositionsSubTitleLabel = Label(PositionsFrame, text=PositionsSubTitleText, font=("Arial", 12),bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify = "center")
+PositionsSubTitleLabel = Label(PositionsFrame, text=PositionsSubTitleText, font=("Consolas", 12),bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify = "center")
 PositionsSubTitleLabel.pack()
 
 instructionsText = StringVar()
-instructionsLabel = Label(PositionsFrame, textvariable=instructionsText, font=("Arial", 15), background=gray25, fg="white", wraplength=rootWidth - 25, justify=CENTER)
+instructionsLabel = Label(PositionsFrame, textvariable=instructionsText, font=("Consolas", 15), background=gray25, fg="white", wraplength=rootWidth - 25, justify=CENTER)
 instructionsText.set("Click one of the buttons to set its position value")
 instructionsLabel.pack()
 
@@ -725,7 +729,7 @@ positionButtonsFrame.pack(side="left", fill="both", expand=False)
 
 for x in range(0, 2):
     # Button
-    positionsButton = Button(positionButtonsFrame, text=PositionButtonsText[x], font=("Arial", 15), bg=gray20, activebackground=gray10, fg='white', activeforeground='white', width=15)
+    positionsButton = Button(positionButtonsFrame, text=PositionButtonsText[x], font=("Consolas", 15), bg=gray20, activebackground=gray10, fg='white', activeforeground='white', width=15)
     positionsButton.config(command=partial(positionsButtonClicked, x))
     positionsButton.bind("<Enter>", lambda event:tkinterButton_enter(event, gray15))
     positionsButton.bind("<Leave>", lambda event:tkinterButton_leave(event, gray20))
@@ -733,7 +737,7 @@ for x in range(0, 2):
     PositionButtons.append(positionsButton)
     # Label
     positionsText = StringVar()
-    positionsLabel = Label(positionButtonsFrame, bg=gray25, textvariable=positionsText, font=("Arial", 13, "bold"), fg="white")
+    positionsLabel = Label(positionButtonsFrame, bg=gray25, textvariable=positionsText, font=("Consolas", 13, "bold"), fg="white")
 
     xPosition = PositionValues[x][0]
     yPosition = PositionValues[x][1]
@@ -760,14 +764,14 @@ def SavePositions():
     SaveStorage()
     ExitPositionsSettings()
 
-positionsSaveButton = Button(positionsSaveExitFrame, width=10, text="Save", font=("Arial", 15, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SavePositions)
+positionsSaveButton = Button(positionsSaveExitFrame, width=10, text="Save", font=("Consolas", 15, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SavePositions)
 positionsSaveButton.grid(row=0, column=0, padx = 10)
 positionsSaveButton.bind("<Enter>", lambda event: tkinterButton_enter(event, greenHoverColor))
 positionsSaveButton.bind("<Leave>", lambda event: tkinterButton_leave(event, saveButtonColor))
 
 ## Exit Button ##
 
-positionsExitButton = Button(positionsSaveExitFrame, width=10, text="Cancel", font=("Arial", 15, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitPositionsSettings)
+positionsExitButton = Button(positionsSaveExitFrame, width=10, text="Cancel", font=("Consolas", 15, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitPositionsSettings)
 positionsExitButton.grid(row=0, column=1, padx = 10)
 positionsExitButton.bind("<Enter>", lambda event: tkinterButton_enter(event, redHoverColor))
 positionsExitButton.bind("<Leave>", lambda event: tkinterButton_leave(event, redColor))
@@ -789,40 +793,40 @@ RunPageFrame = Frame(window, bg=gray25,highlightthickness=0) # Frame for everyth
 RunPageTitleText = "Automation is Running" # Page title text
 RunPageSubTitleText = "Press shift to stop the program" # Page sub title text
 
-RunPageTitleLabel = Label(RunPageFrame, text=RunPageTitleText, font=("Arial", 25), bg=gray25, fg="white", wraplength=rootWidth - 25, justify="center") # Page title
+RunPageTitleLabel = Label(RunPageFrame, text=RunPageTitleText, font=("Consolas", 25), bg=gray25, fg="white", wraplength=rootWidth - 25, justify="center") # Page title
 RunPageTitleLabel.pack()
 
-RunPageSubTitleLabel = Label(RunPageFrame, text=RunPageSubTitleText, font=("Arial", 12),bg=gray25, fg="white", wraplength=rootWidth - 25, justify = "center") # Page sub title
+RunPageSubTitleLabel = Label(RunPageFrame, text=RunPageSubTitleText, font=("Consolas", 12),bg=gray25, fg="white", wraplength=rootWidth - 25, justify = "center") # Page sub title
 RunPageSubTitleLabel.pack()
 
 TimeRan = 0
 RunTimeText = StringVar()
 RunTimeText.set("Time Ran: 0 seconds")
-RunTimeLabel = Label(RunPageFrame, textvariable=RunTimeText, font=("Arial", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
+RunTimeLabel = Label(RunPageFrame, textvariable=RunTimeText, font=("Consolas", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
 RunTimeLabel.pack(anchor="nw", padx=20, pady=(5, 0))
 
 CommandsRan = 0
 RunCommandsText = StringVar()
 RunCommandsText.set("Commands Ran: 0")
-RunCommandsLabel = Label(RunPageFrame, textvariable=RunCommandsText, font=("Arial", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
+RunCommandsLabel = Label(RunPageFrame, textvariable=RunCommandsText, font=("Consolas", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
 RunCommandsLabel.pack(anchor="nw", padx=20)
 
 CurrencyCommandsRan = 0
 RunCurrencyCommandsText = StringVar()
 RunCurrencyCommandsText.set("Currency Commands Ran: 0")
-RunCurrencyCommandsLabel = Label(RunPageFrame, textvariable=RunCurrencyCommandsText, font=("Arial", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
+RunCurrencyCommandsLabel = Label(RunPageFrame, textvariable=RunCurrencyCommandsText, font=("Consolas", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
 RunCurrencyCommandsLabel.pack(anchor="nw", padx=20)
 
 SafetyCommandsRan = 0
 RunSafetyCommandsText = StringVar()
 RunSafetyCommandsText.set("Safety Commands Ran: 0")
-RunSafetyCommandsLabel = Label(RunPageFrame, textvariable=RunSafetyCommandsText, font=("Arial", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
+RunSafetyCommandsLabel = Label(RunPageFrame, textvariable=RunSafetyCommandsText, font=("Consolas", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
 RunSafetyCommandsLabel.pack(anchor="nw", padx=20)
 
 PowerupCommandsRan = 0
 RunPowerupCommandsText = StringVar()
 RunPowerupCommandsText.set("Powerup Commands Ran: 0")
-RunPowerupCommandsLabel = Label(RunPageFrame, textvariable=RunPowerupCommandsText, font=("Arial", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
+RunPowerupCommandsLabel = Label(RunPageFrame, textvariable=RunPowerupCommandsText, font=("Consolas", 15), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
 RunPowerupCommandsLabel.pack(anchor="nw", padx=20)
 
 # Command cooldowns
@@ -835,7 +839,7 @@ SearchCooldown = random.randint(29, 32)
 CrimeCooldown = random.randint(43, 47)
 HighlowCooldown = random.randint(28, 32)
 TriviaCooldown = random.randint(3,7)
-AdventureCooldown = random.randint(305, 310)
+AdventureCooldown = 305
 
 # Whether or not the command should run yet
 runBeg = True
@@ -853,6 +857,7 @@ runCoin = True
 runAmmo = True
 runApple = True
 runAdventure = True
+runLifesaver = True
 
 # Last time the command was used
 lastBeg = None
@@ -870,12 +875,14 @@ lastCoin = None
 lastAmmo = None
 lastApple = None
 lastAdventure = None
+lastLifesaver = None
 # Item durations
 luckyDuration = 15 * 60
 pizzaDuration = 2 * 60 * 60
 coinDuration = 6 * 60 * 60
 ammoDuration = 20 * 60
 appleDuration = 24 * 60 * 60
+LifesaverDuration = 15 * 60
 
 # Item amounts
 luckyAmount = 0
@@ -883,6 +890,7 @@ pizzaAmount = 0
 coinAmount = 0
 ammoAmount = 0
 appleAmount = 0
+LifesaverAmount = 0
 
 commandWaitList = []
 commandRunning = False
@@ -1118,7 +1126,7 @@ def runAdventureCommand():
         if (runAdventure == True):
             timePassed = round(time.time()) - round(lastAdventure)
             if (timePassed > AdventureCooldown):
-                run = False
+                runAdventure = False
                 commandWaitList.append("Adventure")
 def runLuckyCommand():
     while True:
@@ -1165,6 +1173,15 @@ def runAppleCommand():
             if (timePassed > appleDuration):
                 runApple = False
                 commandWaitList.append("apple")
+def runLifesaverCommand():
+    while True:
+        sleep(1)
+        global runLifesaver
+        if (runLifesaver == True):
+            timePassed = round(time.time()) - round(lastLifesaver)
+            if (timePassed > LifesaverDuration):
+                runLifesaver = False
+                commandWaitList.append("Lifesaver")
 
 def runWaitList():
     while True:
@@ -1358,6 +1375,26 @@ def runWaitList():
                 increaseCommandCount()
                 increasePowerupCommandCount()
                 sleep(5)
+            elif (command == "Lifesaver"):
+                commandWaitList.remove("Lifesaver")
+                global LifesaverAmount
+                if (LifesaverAmount > 0):
+                    LifesaverAmount = LifesaverAmount - 1
+                    enterCommand("/buy")
+                    sleep(1)
+                    keyboard.press(Key.enter)
+                    sleep(1)
+                    enterCommand("lifesaver")
+                    keyboard.press(Key.enter)
+                    sleep(1)
+                    keyboard.press(Key.enter)
+                    global lastLifesaver
+                    lastLifesaver = time.time()
+                    global runLifesaver
+                    runLifesaver = True
+                increaseCommandCount()
+                increasePowerupCommandCount()
+                sleep(5)
             elif (command == "ammo"):
                 commandWaitList.remove("ammo")
                 global ammoAmount
@@ -1403,7 +1440,7 @@ def RunBot():
         CrimeCooldown = 15
         HighlowCooldown = 15
         TriviaCooldown = 3
-        AdventureCooldown = 300
+        AdventureCooldown = 310
 
     if (CommandsChosen[0] == True):
         global lastBeg
@@ -1502,7 +1539,7 @@ def runBotButtonClicked():
     toggleRunPage(True)
     RunBot()
  
-runBotButton = Button(MainPageFrame, width=10, text="Run Bot", font=("Arial", 15, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=runBotButtonClicked)
+runBotButton = Button(MainPageFrame, width=10, text="Run Bot", font=("Consolas", 15, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=runBotButtonClicked)
 runBotButton.bind("<Enter>", lambda event:tkinterButton_enter(event, greenHoverColor))
 runBotButton.bind("<Leave>", lambda event: tkinterButton_leave(event, saveButtonColor))
 runBotButton.place(relx=0.5, rely=0.95, anchor="s")
