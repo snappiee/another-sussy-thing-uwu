@@ -999,12 +999,25 @@ def AdventureCommand():
     keyboard.press(Key.enter)
     keyboard.press(Key.enter)
     sleep(2.3)
-    AdvOptionPos = (PositionValues[1][0], PositionValues[1][1])
-    mouse.position = AdvOptionPos
+    AdventureOptionPos = (PositionValues[1][0], PositionValues[1][1])
+    mouse.position = AdventureOptionPos
     sleep(0.1)
     mouse.press(MouseButton.left)
     mouse.release(MouseButton.left)
 
+def TriviaCommand():
+    enterCommand("/trivia")
+    sleep(1)
+    keyboard.press(Key.enter)
+    keyboard.press(Key.enter)
+    sleep(2.3)
+    TriviaOptionPos = (PositionValues[1][0], PositionValues[1][1])
+    mouse.position = TriviaOptionPos
+    sleep(0.1)
+    mouse.press(MouseButton.left)
+    mouse.release(MouseButton.left)
+
+    
 def SearchCommand():
     enterCommand("/search")
     sleep(1)
