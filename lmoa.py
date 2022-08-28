@@ -28,6 +28,7 @@ CommandsChosen = [ # Default values for the commands
     True, #Crime
     True, #Highlow
     True, #Trivia
+    True, #Adventure
 
 ]
 
@@ -114,7 +115,7 @@ root.title(tk_title)
 
 # Width & Height
 rootWidth = 450
-rootHeight = 450
+rootHeight = 500
 
 
 # X Position
@@ -429,7 +430,8 @@ CommandButtonLabelText = [
     "search",
     "crime",
     "highlow",
-    "trivia"
+    "trivia",
+    "adventure"
 ]
 CommandRequirementText = [
     "(No Requirements)",
@@ -440,10 +442,11 @@ CommandRequirementText = [
     "(Requires Nothing)",
     "(Requires Nothing)",
     "(Requires Nothing)",
-    "(Requires Nothing)"
+    "(Requires Nothing)",
+    "(Requires AdvTicket)"
 ]
 
-for x in range(9): # Creates all the command buttons, text labels, and requirements
+for x in range(10): # Creates all the command buttons, text labels, and requirements
     # Button
     CommandButton = Button(buttonsFrame, width = buttonWidth, height = buttonHeight)
     CommandButton.config(command=partial(commandButtonClicked, CommandButton, x))
@@ -832,6 +835,7 @@ SearchCooldown = random.randint(29, 32)
 CrimeCooldown = random.randint(43, 47)
 HighlowCooldown = random.randint(28, 32)
 TriviaCooldown = random.randint(3,7)
+AdventureCooldown = random.randint(305, 310)
 
 # Whether or not the command should run yet
 runBeg = True
@@ -847,7 +851,8 @@ runLucky = True
 runPizza = True
 runCoin = True
 runAmmo = True
-runApple= True
+runApple = True
+runAdventure = True
 
 # Last time the command was used
 lastBeg = None
@@ -864,6 +869,7 @@ lastPizza = None
 lastCoin = None
 lastAmmo = None
 lastApple = None
+lastAdventure = None
 # Item durations
 luckyDuration = 15 * 60
 pizzaDuration = 2 * 60 * 60
@@ -987,14 +993,26 @@ def HighlowCommand():
     mouse.press(MouseButton.left)
     mouse.release(MouseButton.left)
 
-def TriviaCommand():
-    enterCommand("/triv")
+def AdventureCommand():
+    enterCommand("/adventure")
     sleep(1)
     keyboard.press(Key.enter)
     keyboard.press(Key.enter)
     sleep(2.3)
-    TriviaOptionPos = (PositionValues[1][0], PositionValues[1][1])
-    mouse.position = TriviaOptionPos
+    AdvOptionPos = (PositionValues[1][0], PositionValues[1][1])
+    mouse.position = AdvOptionPos
+    sleep(0.1)
+    mouse.press(MouseButton.left)
+    mouse.release(MouseButton.left)
+
+def SearchCommand():
+    enterCommand("/search")
+    sleep(1)
+    keyboard.press(Key.enter)
+    keyboard.press(Key.enter)
+    sleep(2.3)
+    SearchOptionPos = (PositionValues[1][0], PositionValues[1][1])
+    mouse.position = SearchOptionPos
     sleep(0.1)
     mouse.press(MouseButton.left)
     mouse.release(MouseButton.left)
@@ -1080,6 +1098,15 @@ def runTriviaCommand():
             if (timePassed > TriviaCooldown):
                 runTrivia = False
                 commandWaitList.append("Trivia")
+def runAdventureCommand():
+    while True:
+        sleep(1)
+        global runAdventure
+        if (runAdventure == True):
+            timePassed = round(time.time()) - round(lastAdventure)
+            if (timePassed > AdventureCooldown):
+                run = False
+                commandWaitList.append("Adventure")
 def runLuckyCommand():
     while True:
         sleep(1)
@@ -1226,6 +1253,15 @@ def runWaitList():
                 runTrivia = True
                 increaseCommandCount()
                 increaseCurrencyCommandCount()
+            elif (command == "Adventure"):
+                commandWaitList.remove("Adventure")
+                AdventureCommand()
+                global lastAdventure
+                lastAdventure = time.time()
+                global runAdventure
+                runAdventure = True
+                increaseCommandCount()
+                increaseCurrencyCommandCount()
 
 
             elif (command == "lucky"):
@@ -1343,6 +1379,7 @@ def RunBot():
         global CrimeCooldown
         global HighlowCooldown
         global TriviaCooldown
+        global AdventureCooldown
 
         begCooldown = 30
         fishCooldown = 30
@@ -1353,6 +1390,7 @@ def RunBot():
         CrimeCooldown = 15
         HighlowCooldown = 15
         TriviaCooldown = 3
+        AdventureCooldown = 300
 
     if (CommandsChosen[0] == True):
         global lastBeg
@@ -1399,6 +1437,11 @@ def RunBot():
         lastTrivia = time.time() + 1000
         commandWaitList.append("Trivia")
         Timer(2, runTriviaCommand).start()
+    if (CommandsChosen[9] == True):
+        global lastAdventure
+        lastAdventure = time.time() + 1000
+        commandWaitList.append("Adventure")
+        Timer(2, runAdventureCommand).start()
     
 
 
