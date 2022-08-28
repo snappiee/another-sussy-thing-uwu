@@ -28,12 +28,11 @@ CommandsChosen = [ # Default values for the commands
     True, #Crime
     True, #Highlow
     True, #Trivia
-    True, # Landmine
-    True, # Padlock
-    
+
 ]
 
 PowerupsChosen = [ # Default values for powerups
+    False,
     False,
     False,
     False,
@@ -45,6 +44,8 @@ powerupAmounts = [ # Default powerup amounts
     1,
     1,
     1,
+    1,
+    
 ]
 
 PositionValues = [ # Default position values
@@ -106,14 +107,14 @@ exitButtonColor = "#DD0000"
 root=Tk()
 root.overrideredirect(True)
 
-tk_title = "Dank Memer Auto Farm Software" # The window title
+tk_title = "Dank Farm" # The window title
 root.title(tk_title)
 
 ##### Geometry #####
 
 # Width & Height
 rootWidth = 450
-rootHeight = 600
+rootHeight = 450
 
 
 # X Position
@@ -291,14 +292,14 @@ MainPageFrame.pack(expand=1, fill=BOTH)
 MainPageTitleText = "Dank Memer Auto Farm" # Page title text
 MainPageSubTitleText = "Customize your settings then click run to begin the automation" # Page sub title text
 
-MainPageTitleLabel = Label(MainPageFrame, text=MainPageTitleText, font=("Arial", 25), bg=gray25, fg="white", wraplength=rootWidth - 25, justify="center") # Page title
+MainPageTitleLabel = Label(MainPageFrame, text=MainPageTitleText, font=("Arial", 18), bg=gray25, fg="white", wraplength=rootWidth - 25, justify="center") # Page title
 MainPageTitleLabel.pack()
 
 MainPageSubTitleLabel = Label(MainPageFrame, text=MainPageSubTitleText, font=("Arial", 12),bg=gray25, fg="white", wraplength=rootWidth - 25, justify = "center") # Page sub title
 MainPageSubTitleLabel.pack()
 
 
-MainSettingsLabel = Label(MainPageFrame, text="Settings", font=("Arial", 22), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
+MainSettingsLabel = Label(MainPageFrame, text="Settings", font=("Arial", 13), bg=gray25, fg="white", wraplength=rootWidth - 25) # Settings text
 MainSettingsLabel.pack(anchor="nw", padx=20, pady=5)
 
 
@@ -333,7 +334,7 @@ patreonButton.bind("<Enter>", tkinterOptionButton_enter)
 patreonButton.bind("<Leave>", tkinterOptionButton_leave)
 
 # Text label for the button
-CommandLabel = Label(patreonFrame, bg=gray25, text="Dank Memer Patreon", font=("Arial", 18), fg="white")
+CommandLabel = Label(patreonFrame, bg=gray25, text="Dank Memer Patreon", font=("Arial", 15), fg="white")
 CommandLabel.grid(row=0, column=1, sticky="NW")
 
 CommandSubLabel = Label(patreonFrame, bg=gray25, text="(Shortens Cooldowns)", font=("Arial", 12), fg="white")
@@ -390,10 +391,10 @@ CommandSettingsFrame = Frame(window, bg=gray25,highlightthickness=0) # Frame for
 commandsTitleText = "Commands" # Title text
 commandsTitleSubText = "Select which commands to run" # Title sub text
 
-commandsLabel = Label(CommandSettingsFrame, text=commandsTitleText, font=("Arial", 25), bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify="center") # Title Label
+commandsLabel = Label(CommandSettingsFrame, text=commandsTitleText, font=("Arial", 15), bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify="center") # Title Label
 commandsLabel.pack()
 
-commandsSubLabel = Label(CommandSettingsFrame, text=commandsTitleSubText, font=("Arial", 14),bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify = "center") # Sub Title Label
+commandsSubLabel = Label(CommandSettingsFrame, text=commandsTitleSubText, font=("Arial", 12),bg=gray25, fg="#fff", wraplength=rootWidth - 25, justify = "center") # Sub Title Label
 commandsSubLabel.pack()
 ##### Buttons #####
 
@@ -425,12 +426,10 @@ CommandButtonLabelText = [
     "hunt",
     "dig",
     "postmeme",
-    "Search",
+    "search",
     "crime",
     "highlow",
-    "trivia",
-    "use landmine",
-    "use padlock"
+    "trivia"
 ]
 CommandRequirementText = [
     "(No Requirements)",
@@ -441,12 +440,10 @@ CommandRequirementText = [
     "(Requires Nothing)",
     "(Requires Nothing)",
     "(Requires Nothing)",
-    "(Requires Nothing)",
-    "(Safety Command)",
-    "(Safety Command)"
+    "(Requires Nothing)"
 ]
 
-for x in range(11): # Creates all the command buttons, text labels, and requirements
+for x in range(9): # Creates all the command buttons, text labels, and requirements
     # Button
     CommandButton = Button(buttonsFrame, width = buttonWidth, height = buttonHeight)
     CommandButton.config(command=partial(commandButtonClicked, CommandButton, x))
@@ -461,7 +458,7 @@ for x in range(11): # Creates all the command buttons, text labels, and requirem
     CommandButtons.append(CommandButton) # Storing the button in a list
 
     # Text label for the button
-    CommandLabel = Label(buttonsFrame, bg=gray25, text="- /" + CommandButtonLabelText[x], font=("Arial", 18), fg="white")
+    CommandLabel = Label(buttonsFrame, bg=gray25, text="- /" + CommandButtonLabelText[x], font=("Arial", 14), fg="white")
     CommandLabel.grid(row=x, column=1, sticky="NW")
     # Requirement text label
     RequirementLabel = Label(buttonsFrame, bg=gray25, text=CommandRequirementText[x], font=("Arial", 12), fg="white")
@@ -488,14 +485,14 @@ def SaveCommands(): # Saves commands
     ExitCommandSettings()
 
 saveButtonText = StringVar()
-saveButton = Button(CommandSaveExitFrame, width=10, textvariable=saveButtonText, font=("Arial", 18, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SaveCommands)
+saveButton = Button(CommandSaveExitFrame, width=7, textvariable=saveButtonText, font=("Arial", 13, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SaveCommands)
 saveButtonText.set("Save")
 saveButton.grid(row=0, column=0, padx = 10)
 saveButton.bind("<Enter>", lambda event:tkinterButton_enter(event, greenHoverColor))
 saveButton.bind("<Leave>", lambda event:tkinterButton_enter(event, saveButtonColor))
 
 ## Exit Button ##
-exitButton = Button(CommandSaveExitFrame, width=10, text="Cancel", font=("Arial", 18, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitCommandSettings)
+exitButton = Button(CommandSaveExitFrame, width=7, text="Cancel", font=("Arial", 13, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitCommandSettings)
 exitButton.grid(row=0, column=1, padx = 10)
 exitButton.bind("<Enter>", lambda event:tkinterButton_enter(event, redHoverColor))
 exitButton.bind("<Leave>", lambda event:tkinterButton_leave(event, exitButtonColor))
@@ -553,17 +550,21 @@ powerupButtonLabelText = [
     "Pizza",
     "Prestige Coin",
     "Ammo",
+    "Apple"
+    
 ]
 powerupTimeText = [
     "(15m)",
     "(2h)",
     "(6h)",
     "(20m)",
+    "(1d)"
+    
 ]
 
 powerupAmountText = []
 
-for x in range(4): # Creates all the command buttons, text labels, and amount buttons.
+for x in range(5): # Creates all the command buttons, text labels, and amount buttons.
     # Button
     powerupButton = Button(powerupButtonsFrame, width = 3, height = 1)
     powerupButton.config(command=partial(powerupButtonClicked, powerupButton, x))
@@ -756,14 +757,14 @@ def SavePositions():
     SaveStorage()
     ExitPositionsSettings()
 
-positionsSaveButton = Button(positionsSaveExitFrame, width=10, text="Save", font=("Arial", 18, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SavePositions)
+positionsSaveButton = Button(positionsSaveExitFrame, width=10, text="Save", font=("Arial", 15, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=SavePositions)
 positionsSaveButton.grid(row=0, column=0, padx = 10)
 positionsSaveButton.bind("<Enter>", lambda event: tkinterButton_enter(event, greenHoverColor))
 positionsSaveButton.bind("<Leave>", lambda event: tkinterButton_leave(event, saveButtonColor))
 
 ## Exit Button ##
 
-positionsExitButton = Button(positionsSaveExitFrame, width=10, text="Cancel", font=("Arial", 18, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitPositionsSettings)
+positionsExitButton = Button(positionsSaveExitFrame, width=10, text="Cancel", font=("Arial", 15, "bold"), bg=exitButtonColor, activebackground=redActiveColor, fg="white", activeforeground="white", command=ExitPositionsSettings)
 positionsExitButton.grid(row=0, column=1, padx = 10)
 positionsExitButton.bind("<Enter>", lambda event: tkinterButton_enter(event, redHoverColor))
 positionsExitButton.bind("<Leave>", lambda event: tkinterButton_leave(event, redColor))
@@ -831,8 +832,6 @@ SearchCooldown = random.randint(29, 32)
 CrimeCooldown = random.randint(43, 47)
 HighlowCooldown = random.randint(28, 32)
 TriviaCooldown = random.randint(3,7)
-landmineCooldown = 30
-padlockCooldown = 30
 
 # Whether or not the command should run yet
 runBeg = True
@@ -844,12 +843,11 @@ runSearch = True
 runCrime = True
 runHighlow = True
 runTrivia = True
-runLandmine = True
-runPadlock = True
 runLucky = True
 runPizza = True
 runCoin = True
 runAmmo = True
+runApple= True
 
 # Last time the command was used
 lastBeg = None
@@ -861,24 +859,24 @@ lastSearch = None
 lastCrime = None
 lastHighlow = None
 lastTrivia = None
-lastLandmine = None
-lastPadlock = None
 lastLucky = None
 lastPizza = None
 lastCoin = None
 lastAmmo = None
-
+lastApple = None
 # Item durations
 luckyDuration = 15 * 60
-pizzaDuration = 1 * 60 * 60
+pizzaDuration = 2 * 60 * 60
 coinDuration = 6 * 60 * 60
 ammoDuration = 20 * 60
+appleDuration = 24 * 60 * 60
 
 # Item amounts
 luckyAmount = 0
 pizzaAmount = 0
 coinAmount = 0
-ammoAmmount = 0
+ammoAmount = 0
+appleAmount = 0
 
 commandWaitList = []
 commandRunning = False
@@ -940,15 +938,13 @@ def enterCommand(command):
             keyboard.press(character)
             keyboard.release(character)
             sleep(0.05)
-    keyboard.press(Key.enter)
-    keyboard.release(Key.enter)
 
 def postMemeCommand():
     enterCommand("/postmeme")
     sleep(1)
     keyboard.press(Key.enter)
     keyboard.press(Key.enter)
-    sleep(1.8)
+    sleep(2.3)
     postMemeOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = postMemeOptionPos
     sleep(0.1)
@@ -960,7 +956,7 @@ def SearchCommand():
     sleep(1)
     keyboard.press(Key.enter)
     keyboard.press(Key.enter)
-    sleep(1.8)
+    sleep(2.3)
     SearchOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = SearchOptionPos
     sleep(0.1)
@@ -972,7 +968,7 @@ def CrimeCommand():
     sleep(1)
     keyboard.press(Key.enter)
     keyboard.press(Key.enter)
-    sleep(1.8)
+    sleep(2.3)
     CrimeOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = CrimeOptionPos
     sleep(0.1)
@@ -984,7 +980,7 @@ def HighlowCommand():
     sleep(1)
     keyboard.press(Key.enter)
     keyboard.press(Key.enter)
-    sleep(1.8)
+    sleep(2.3)
     HighlowOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = HighlowOptionPos
     sleep(0.1)
@@ -996,7 +992,7 @@ def TriviaCommand():
     sleep(1)
     keyboard.press(Key.enter)
     keyboard.press(Key.enter)
-    sleep(1.8)
+    sleep(2.3)
     TriviaOptionPos = (PositionValues[1][0], PositionValues[1][1])
     mouse.position = TriviaOptionPos
     sleep(0.1)
@@ -1084,24 +1080,6 @@ def runTriviaCommand():
             if (timePassed > TriviaCooldown):
                 runTrivia = False
                 commandWaitList.append("Trivia")
-def runLandmineCommand():
-    while True:
-        sleep(1)
-        global runLandmine
-        if (runLandmine == True):
-            timePassed = round(time.time()) - round(lastLandmine)
-            if (timePassed > landmineCooldown):
-                runLandmine = False
-                commandWaitList.append("landmine")
-def runPadlockCommand():
-    while True:
-        sleep(1)
-        global runPadlock
-        if (runPadlock == True):
-            timePassed = round(time.time()) - round(lastPadlock)
-            if (timePassed > padlockCooldown):
-                runPadlock = False
-                commandWaitList.append("padlock")
 def runLuckyCommand():
     while True:
         sleep(1)
@@ -1138,6 +1116,15 @@ def runAmmoCommand():
             if (timePassed > ammoDuration):
                 runAmmo = False
                 commandWaitList.append("ammo")
+def runAppleCommand():
+    while True:
+        sleep(1)
+        global runApple
+        if (runApple == True):
+            timePassed = round(time.time()) - round(lastApple)
+            if (timePassed > appleDuration):
+                runApple = False
+                commandWaitList.append("apple")
 
 def runWaitList():
     while True:
@@ -1239,30 +1226,6 @@ def runWaitList():
                 runTrivia = True
                 increaseCommandCount()
                 increaseCurrencyCommandCount()
-            elif (command == "landmine"):
-                commandWaitList.remove("landmine")
-                enterCommand("/use")
-                sleep(1)
-                keyboard.press(Key.enter)
-                keyboard.press(Key.enter)
-                global lastLandmine
-                lastLandmine = time.time()
-                global runLandmine
-                runLandmine = True
-                increaseCommandCount()
-                increaseSafetyCommandCount()
-            elif (command == "padlock"):
-                commandWaitList.remove("padlock")
-                enterCommand("/use padlock")
-                sleep(1)
-                keyboard.press(Key.enter)
-                keyboard.press(Key.enter)
-                global lastPadlock
-                lastPadlock = time.time()
-                global runPadlock
-                runPadlock = True
-                increaseCommandCount()
-                increaseSafetyCommandCount()
 
 
             elif (command == "lucky"):
@@ -1273,8 +1236,10 @@ def runWaitList():
                     enterCommand("/use")
                     sleep(1)
                     keyboard.press(Key.enter)
+                    sleep(1)
                     enterCommand("lucky")
                     keyboard.press(Key.enter)
+                    sleep(1)
                     keyboard.press(Key.enter)
                     global lastLucky
                     lastLucky = time.time()
@@ -1291,8 +1256,10 @@ def runWaitList():
                     enterCommand("/use")
                     sleep(1)
                     keyboard.press(Key.enter)
+                    sleep(1)
                     enterCommand("pizza")
                     keyboard.press(Key.enter)
+                    sleep(1)
                     keyboard.press(Key.enter)
                     global lastPizza
                     lastPizza = time.time()
@@ -1309,13 +1276,36 @@ def runWaitList():
                     enterCommand("/use")
                     sleep(1)
                     keyboard.press(Key.enter)
+                    sleep(1)
                     enterCommand("Prestige")
                     keyboard.press(Key.enter)
+                    sleep(1)
                     keyboard.press(Key.enter)
                     global lastCoin
                     lastCoin = time.time()
                     global runCoin
                     runCoin = True
+                increaseCommandCount()
+                increasePowerupCommandCount()
+                sleep(5)
+
+            elif (command == "apple"):
+                commandWaitList.remove("apple")
+                global appleAmount
+                if (luckyAmount > 0):
+                    luckyAmount = luckyAmount - 1
+                    enterCommand("/use")
+                    sleep(1)
+                    keyboard.press(Key.enter)
+                    sleep(1)
+                    enterCommand("apple")
+                    keyboard.press(Key.enter)
+                    sleep(1)
+                    keyboard.press(Key.enter)
+                    global lastApple
+                    lastApple = time.time()
+                    global runApple
+                    runApple = True
                 increaseCommandCount()
                 increasePowerupCommandCount()
                 sleep(5)
@@ -1327,8 +1317,10 @@ def runWaitList():
                     enterCommand("/use")
                     sleep(1)
                     keyboard.press(Key.enter)
+                    sleep(1)
                     enterCommand("ammo")
                     keyboard.press(Key.enter)
+                    sleep(1)
                     keyboard.press(Key.enter)
                     global lastAmmo
                     lastAmmo = time.time()
@@ -1408,17 +1400,7 @@ def RunBot():
         commandWaitList.append("Trivia")
         Timer(2, runTriviaCommand).start()
     
-    if (CommandsChosen[9] == True):
-        global lastLandmine
-        lastLandmine = time.time() + 1000
-        commandWaitList.append("landmine")
-        Timer(2, runLandmineCommand).start()
-    if (CommandsChosen[10] == True):
-        global lastPadlock
-        lastPadlock = time.time() + 1000
-        commandWaitList.append("padlock")
-        Timer(2, runPadlockCommand).start()
-    
+
 
     if (PowerupsChosen[0] == True):
         global luckyAmount
@@ -1448,6 +1430,13 @@ def RunBot():
         lastAmmo = time.time() + 1000
         commandWaitList.append("ammo")
         Timer(2, runAmmoCommand).start()
+    if (PowerupsChosen[4] == True):
+        global appleAmount
+        appleAmount = powerupAmounts[4]
+        global lastApple
+        lastApple = time.time() + 1000
+        commandWaitList.append("apple")
+        Timer(2, runAppleCommand).start()
 
     Timer(0, runWaitList).start()
     Timer(0, timeRanLoop).start()
@@ -1457,7 +1446,7 @@ def runBotButtonClicked():
     toggleRunPage(True)
     RunBot()
  
-runBotButton = Button(MainPageFrame, width=10, text="Run Bot", font=("Arial", 18, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=runBotButtonClicked)
+runBotButton = Button(MainPageFrame, width=10, text="Run Bot", font=("Arial", 15, "bold"), bg=saveButtonColor, activebackground=greenActiveColor, fg="white", activeforeground="white", command=runBotButtonClicked)
 runBotButton.bind("<Enter>", lambda event:tkinterButton_enter(event, greenHoverColor))
 runBotButton.bind("<Leave>", lambda event: tkinterButton_leave(event, saveButtonColor))
 runBotButton.place(relx=0.5, rely=0.95, anchor="s")
@@ -1468,6 +1457,7 @@ def key_release(key):
     if (key == Key.shift or key == Key.shift_r):
         keyDetectionListener.stop()
         root.destroy()
+        sys.exit()
 
 def addKeyboardListener():
     with listenerKeyboard.Listener(on_release=key_release) as listener:
